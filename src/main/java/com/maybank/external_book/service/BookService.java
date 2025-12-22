@@ -2,6 +2,7 @@ package com.maybank.external_book.service;
 
 
 import com.maybank.external_book.dto.BookResponse;
+import com.maybank.external_book.exception.BookNotFoundException;
 import com.maybank.external_book.mapper.BookMapper;
 import com.maybank.external_book.model.Book;
 import com.maybank.external_book.repository.BookRepository;
@@ -21,7 +22,7 @@ public class BookService {
     @Transactional(readOnly = true)
     public BookResponse getByIsbn(String isbn) {
         Book book= bookRepository.findByIsbn(isbn)
-                .orElseThrow(() -> new RuntimeException("Book not found with ISBN: " + isbn));
+                .orElseThrow(() -> new BookNotFoundException(isbn));
         return BookMapper.mapToResponse(book);
     }
 

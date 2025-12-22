@@ -18,17 +18,13 @@ public class BookController {
 
     @GetMapping("/isbn/{isbn}")
     public ResponseEntity<BookResponse> getByIsbn(@PathVariable String isbn) {
-        try {
             return ResponseEntity.ok(bookService.getByIsbn(isbn));
-        } catch (Exception e) {
-            return ResponseEntity.notFound().build();
-        }
     }
 
     @GetMapping("/search")
     public ResponseEntity<Page<BookResponse>> searchByName(@RequestParam String title,
                                                            @RequestParam(defaultValue = "0") int page,
                                                            @RequestParam(defaultValue = "10") int size) {
-        return  new ResponseEntity<>(bookService.getByTitle(title,page,size), HttpStatus.OK);
+        return ResponseEntity.ok(bookService.getByTitle(title,page,size));
     }
 }
