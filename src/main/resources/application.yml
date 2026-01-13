@@ -1,5 +1,5 @@
 server:
-  port: 8001
+  port: ${APP_PORT:8001}
   servlet:
     context-path: /external-book
 
@@ -8,7 +8,7 @@ spring:
     name: external-book
 
   datasource:
-    url: jdbc:sqlserver://${DB_HOST:localhost}:1433;databaseName=TESTDB;encrypt=false
+    url: jdbc:sqlserver://${DB_HOST:host.docker.internal}:${DB_PORT:1433};databaseName=${DB_NAME:TESTDB};encrypt=false
     username: sa
     password: P@ss123Word
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver

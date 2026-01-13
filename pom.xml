@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.maybank</groupId>
 	<artifactId>external-book</artifactId>
-	<version>0.0.1</version>
+	<version>1.0.0</version>
 	<name>book</name>
 	<description>Maybank Assessment</description>
 	<url/>
@@ -102,6 +102,20 @@
 						</exclude>
 					</excludes>
 				</configuration>
+				<executions>
+					<execution>
+						<id>build-image</id>
+						<phase>install</phase>
+						<goals>
+							<goal>build-image</goal>
+						</goals>
+						<configuration>
+							<image>
+								<name>${project.artifactId}:${project.version}</name>
+							</image>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
